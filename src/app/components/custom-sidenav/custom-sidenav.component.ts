@@ -1,4 +1,4 @@
-import {Component, signal} from '@angular/core';
+import {Component, computed, Input, signal} from '@angular/core';
 import {NgForOf, NgOptimizedImage} from "@angular/common";
 import {MatListModule} from "@angular/material/list";
 import {MatIconModule} from "@angular/material/icon";
@@ -17,7 +17,7 @@ export type MenuItem = {
   ],
   template: `
     <div class="sidenav-header">
-      <img width="100" height="100" src="assets/profile.jpg" alt="profile-image" border="3px solid #000"/>
+      <img [width]="profilePicSize()" [height]="profilePicSize()" src="assets/profile.jpg" alt="profile-image" border="3px solid #000"/>
       <div class="header-text">
         <h2>Meu Delírio</h2>
         <p>Bem-Vindo!</p>
@@ -56,6 +56,11 @@ export type MenuItem = {
 })
 export class CustomSidenavComponent {
 
+  sideNavCollapsed = signal(false);
+  @Input() set collapsed(value: boolean) {
+    this.sideNavCollapsed.set(value);
+  }
+
   menuItems = signal<MenuItem[]>([
     {
       icon: 'dashboard',
@@ -78,4 +83,6 @@ export class CustomSidenavComponent {
       route: 'comments'
     },
   ]);
+
+  profilePicSize = computed(() => this.sideNavCollapsed() ? '32':'100');
 }

@@ -20,7 +20,7 @@ import {CustomSidenavComponent} from "./components/custom-sidenav/custom-sidenav
     </mat-toolbar>
     <mat-sidenav-container>
       <mat-sidenav opened mode="side" [style.width]="sidenavWidth()">
-        <app-custom-sidenav></app-custom-sidenav>
+        <app-custom-sidenav [collapsed]="collapsed()"></app-custom-sidenav>
       </mat-sidenav>
       <mat-sidenav-content class="content" [style.margin-left]="sidenavWidth()">
         <h2>Hello</h2>
