@@ -23,13 +23,9 @@ import {CustomSidenavComponent} from "./components/custom-sidenav/custom-sidenav
         <app-custom-sidenav [collapsed]="collapsed()"></app-custom-sidenav>
       </mat-sidenav>
       <mat-sidenav-content class="content" [style.margin-left]="sidenavWidth()">
-        <h2>Hello</h2>
             <router-outlet></router-outlet>
       </mat-sidenav-content>
     </mat-sidenav-container>
-    <router-outlet />
-
-
   `,
   styles: [`
     mat-toolbar {
