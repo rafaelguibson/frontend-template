@@ -18,11 +18,12 @@ export type MenuItem = {
   template: `
     <div class="sidenav-header">
       <img [width]="profilePicSize()" [height]="profilePicSize()" src="assets/profile.jpg" alt="profile-image" border="3px solid #000"/>
-      <div class="header-text">
+      <div class="header-text" [class.hide-header-text]="sideNavCollapsed()">
         <h2>Meu Delírio</h2>
         <p>Bem-Vindo!</p>
       </div>
     </div>
+<!--    <hr>-->
     <mat-nav-list>
       <a mat-list-item *ngFor="let item of menuItems()">
         <mat-icon matListItemIcon>{{item.icon}}</mat-icon>
@@ -50,6 +51,9 @@ export type MenuItem = {
         margin: 0;
         font-size: 0.8rem;
       }
+    }
+    .hide-header-text{
+      opacity: 0;
     }
   }
   `]
