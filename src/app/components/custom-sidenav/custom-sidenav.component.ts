@@ -1,5 +1,5 @@
 import {Component, computed, Input, signal} from '@angular/core';
-import {NgForOf, NgOptimizedImage} from "@angular/common";
+import {NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
 import {MatListModule} from "@angular/material/list";
 import {MatIconModule} from "@angular/material/icon";
 
@@ -13,7 +13,7 @@ export type MenuItem = {
   selector: 'app-custom-sidenav',
   standalone: true,
   imports: [
-    NgOptimizedImage, MatListModule, MatIconModule, NgForOf
+    NgOptimizedImage, MatListModule, MatIconModule, NgForOf, NgIf
   ],
   template: `
     <div class="sidenav-header">
@@ -27,7 +27,7 @@ export type MenuItem = {
     <mat-nav-list>
       <a mat-list-item *ngFor="let item of menuItems()">
         <mat-icon matListItemIcon>{{item.icon}}</mat-icon>
-        <span matListItemTitle>{{item.label}}</span>
+        <span matListItemTitle *ngIf="!sideNavCollapsed()">{{item.label}}</span>
       </a>
     </mat-nav-list>
   `,
@@ -54,6 +54,7 @@ export type MenuItem = {
     }
     .hide-header-text{
       opacity: 0;
+      height: 0px;
     }
   }
   `]
